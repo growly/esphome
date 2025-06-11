@@ -1,0 +1,59 @@
+esphome:
+  name: esp32-poe-template
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: ""
+  reboot_timeout: 0s
+
+ota:
+  - platform: esphome
+    password: ""
+
+# This is actually one of the example configs at
+#   https://esphome.io/components/ethernet
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+
+#wifi:
+#  ssid: "moo-cow"
+#  password: "noshutup"
+#
+#  # Enable fallback hotspot (captive portal) in case wifi connection fails
+#  ap:
+#    ssid: "Esp32-Poe-Template"
+#    password: "H3IPgtvlecPV"
+    
+i2c:
+  sda: GPIO14
+  scl: GPIO2
+  scan: true
+  id: bus_a
+
+mqtt:
+  broker: 192.168.1.203
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: "temperature"
+      oversampling: 4x
+    pressure:
+      name: "pressure"
+    humidity:
+      name: "humidity"
+      oversampling: 4x
+    address: 0x76
+    update_interval: 60s
