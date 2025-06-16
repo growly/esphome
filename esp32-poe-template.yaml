@@ -1,5 +1,5 @@
 esphome:
-  name: esp32-poe-template
+  name: ${device_name}
 
 esp32:
   board: esp32dev
@@ -33,7 +33,7 @@ ethernet:
 #
 #  # Enable fallback hotspot (captive portal) in case wifi connection fails
 #  ap:
-#    ssid: "Esp32-Poe-Template"
+#    ssid: "${device_name} Fallback Hotspot"
 #    password: "H3IPgtvlecPV"
     
 i2c:
