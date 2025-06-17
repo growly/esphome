@@ -49,11 +49,29 @@ sensor:
   - platform: bme280_i2c
     temperature:
       name: "temperature"
+      id: "temperature"
       oversampling: 4x
+      on_value:
+        mqtt.publish_json:
+          topic: "${device_name}/sensor/json"
+          payload: |-
+            root["temperature"] = id(temperature).state;
     pressure:
       name: "pressure"
+      id: "pressure"
+      on_value:
+        mqtt.publish_json:
+          topic: "${device_name}/sensor/json"
+          payload: |-
+            root["pressure"] = id(pressure).state;
     humidity:
       name: "humidity"
+      id: "humidity"
       oversampling: 4x
+      on_value:
+        mqtt.publish_json:
+          topic: "${device_name}/sensor/json"
+          payload: |-
+            root["humidity"] = id(humidity).state;
     address: 0x76
     update_interval: 60s

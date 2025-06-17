@@ -20,3 +20,11 @@ This basic feature of computing is called
 ```
 esphome -s device_name gym config esp32-poe-template.yaml
 ```
+
+# Example OTA update
+
+```
+sudo docker run --rm --privileged -v "${PWD}":/config --device=/dev/ttyUSB1 -it ghcr.io/esphome/esphome \
+    -s device_name server-rack \
+    run esp32-poe-template.yaml --device 192.168.1.212
+```

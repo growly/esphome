@@ -52,6 +52,12 @@ sensor:
             root["temperature"] = id(temperature).state;
     pressure:
       name: "pressure"
+      id: "pressure"
+      on_value:
+        mqtt.publish_json:
+          topic: "${device_name}/sensor/json"
+          payload: |-
+            root["pressure"] = id(pressure).state;
     humidity:
       name: "humidity"
       id: "humidity"
